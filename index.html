@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Carpet Salon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --red:#c40000;
+  --text:#111;
+  --bg:#f2f2f2;
+}
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+/* خلفية الصور */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(242,242,242,.93), rgba(242,242,242,.97)),
+    var(--bgimg) center/cover no-repeat;
+  z-index:-3;
+  transition:background-image 1.4s ease;
+}
+
+/* علامة مائية */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('logo.png') center/520px no-repeat;
+  opacity:.05;
+  z-index:-2;
+  pointer-events:none;
+}
+
+/* زر اللغة */
+.lang{
+  position:fixed;
+  top:14px;
+  right:14px;
+  background:var(--red);
+  color:#fff;
+  border:none;
+  padding:8px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  z-index:10;
+}
+
+/* القسم الرئيسي */
+header{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.logo{
+  width:180px;
+  margin-bottom:25px;
+}
+
+/* النص السحري */
+.magic-text{
+  max-width:900px;
+  font-size:20px;
+  line-height:1.75;
+}
+
+.magic-text span{
+  opacity:0;
+  filter:blur(6px);
+  animation:magic .22s forwards;
+}
+
+@keyframes magic{
+  to{opacity:1; filter:blur(0);}
+}
+
+/* الأيقونات */
+.icons{
+  margin-top:60px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:26px;
+}
+
+.icons a{
+  font-size:40px;
+  color:#111;
+  opacity:0;
+  transform:translateY(-120vh); /* خارج الشاشة */
+  will-change:transform,opacity;
+}
+
+@keyframes drop{
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+@keyframes pulse{
+  0%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(0) scale(1.15);}
+  100%{transform:translateY(0) scale(1);}
+}
+
+.pulse{animation:pulse 1.6s infinite;}
+
+.icons a:hover{color:var(--red);}
+
+/* الخريطة */
+.map{
+  margin:80px auto 40px;
+  width:95%;
+  max-width:900px;
+  height:340px;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+/* الفوتر */
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<button class="lang" onclick="location.href='ar.html'">ع</button>
+
+<header id="hero">
+  <img src="logo.png" class="logo">
+
+  <div id="text" class="magic-text"></div>
+
+  <div class="icons" id="icons">
+    <a href="https://www.instagram.com/red_carpetsalon" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/966550873329" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:+9660556510758">
+      <i class="fas fa-phone"></i>
+    </a>
+    <a href="https://www.facebook.com/share/19kqh8YubX/?mibextid=wwXIfr" target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+   <a href="tel:+966112933497" style="color:#000; font-size:40px; text-decoration:none;">
+  &#9742;&#65038;
+</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=Red%20Carpet%20Salon%20Riyadh" target="_blank">
+      <i class="fas fa-location-dot"></i>
+    </a>
+  </div>
+</header>
+
+<div class="map">
+<iframe
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.0088791324697!2d46.7056009!3d24.6922215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0376eab9e353%3A0x2dc9642d4327df13!2z2YXYtNi62YQg2KfZhNiz2KzYp9iv2Kkg2KfZhNit2YXYsdin2KE!5e0!3m2!1sar!2ssa!4v1765991152798!5m2!1sar!2ssa"
+width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+</div>
+
+<footer>
+© Red Carpet Hair & Beauty Ladies Salon – All Rights Reserved
+</footer>
+
+<script>
+/* سلايدر الخلفية */
+const images=["bg/bg1.jpg","bg/bg2.jpg","bg/bg3.jpg"];
+let idx=0;
+document.body.style.setProperty("--bgimg",`url('${images[0]}')`);
+setInterval(()=>{
+  idx=(idx+1)%images.length;
+  document.body.style.setProperty("--bgimg",`url('${images[idx]}')`);
+},4000);
+
+/* النص السحري */
+const text=`Red Carpet Hair and Beauty Ladies Salon is a trusted beauty destination in Riyadh,
+offering expert hair and nail services in a refined, well-maintained environment.
+Renowned for skilled stylists, quality products, and personalized service,
+the salon delivers a relaxing experience worth the premium pricing.`;
+
+const box=document.getElementById("text");
+text.split("").forEach((c,i)=>{
+  setTimeout(()=>{
+    const s=document.createElement("span");
+    s.textContent=c;
+    box.appendChild(s);
+  },10*i);
+});
+
+/* إسقاط الأيقونات + نبض + تمرير تلقائي */
+const icons=document.querySelectorAll(".icons a");
+
+setTimeout(()=>{
+  icons.forEach((icon,i)=>{
+    setTimeout(()=>{
+      icon.style.animation="drop .7s ease-out forwards";
+      setTimeout(()=>icon.classList.add("pulse"),700);
+    },i*350);
+  });
+
+  setTimeout(()=>{
+    window.scrollTo({top:window.innerHeight*0.6,behavior:"smooth"});
+  },800);
+
+},1200);
+</script>
+
+</body>
+</html>
